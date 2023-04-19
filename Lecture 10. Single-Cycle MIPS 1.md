@@ -44,5 +44,27 @@ Registers (implemented with flip-flops) store data in a circuit
 # Control unit
 
 - ALUSrc: rd2 or imm 중에 뭘 ALUsrc로 보낼까
-- RegWrite: 레지스터 파일에 쓰기 작업을 할지 말지
-- 
+- RegWrite: 레지스터 파일에 쓰기 작업을 할것인지
+- MemWirte: 메모리에 쓰기 동작을 할것인지
+- MemToReg
+
+
+
+## Execution of the arithemetic and logical instructions
+
+R-type: rd에 write, src2가 rt
+
+I-type: rt에 write, src2가 imm
+
+- RegWirte = 1: ALU의 결과값을 무조건 reg에 저장
+
+- ALUSrc: ALU의 src2 결정 (src1는 rs로 고정)
+  - ALUSrc = 0: rd2
+  - ALUSrc = 1: imm
+
+
+
+## Execution of the memory access instructions
+
+- `lw		$rt, imm($rs)`
+  - 
