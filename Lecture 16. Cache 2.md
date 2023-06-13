@@ -56,7 +56,32 @@
 
 # Replacement Policy
 
+set associative cache는 비어있는 공간에 먼저 채운다. 근데 해당 set addr의 방이 다 차있다면?
 
+- **Least-recently used(LRU)**: 가장 오랫동안 사용하지 않은 것을 방출한다. 
+  - 하드웨어는 한 세트 안에서 각 블럭이 몇 번 째로 들어온 것인지 기록해야한다. 2-way의 경우 set 당 1-bit만 있으면 되지만, 4-way의 경우 4!=24개의 경우를 저장하기 위해 5-bit가 필요하다.
+- Random: 랜덤으로 방출한다. 성능 나름 괜찮다.
+
+
+
+# Reducing Cache Miss Penalty
+
+- 계층화된 캐시를 사용한다.
+
+> - Given
+>   - base CPI = 1
+>   - clock frequency = 4GHz
+>   - Main memory access time = 100ns
+> - L1$만 있을 때
+>   - L1$ access time = 0.25 ns / cycle
+>   - L1 miss pealty = 100ns/ 0.25ns == 400cyles
+>   - Miss rate / inst = 2%
+>   - CPI: 1 + 0.02 x 400 = 9CPI
+> - L2$가 추가되면
+>   - Lw$ access time = 5ns
+>   - global miss to main memory = 0.05%
+>   - L1 miss with L2 miss: 400cycles
+> - CPI: 1 + 0.02 x 20 + 0,005  x 400 = 3.4CPI
 
 
 
